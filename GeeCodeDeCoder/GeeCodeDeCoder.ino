@@ -11,6 +11,8 @@ Serial.begin(9600);
 simpleMotor.setupOneMotor();
 simpleMotor.setStepSize(8);
 atMega2560_T3(0b101, round(15625/MOTOR_FREQ)); //16MHz, 1024 scalar, means it ticks every 1/15626 of a second 
+delay(400);
+simpleMotor.startMotion();
 }
 
 void loop() {
@@ -19,11 +21,14 @@ void loop() {
 //simpleMotor.moveMotor(0);
 delay(1000);
 //simpleMotor.moveMotor(-0);
-Serial.println(counter);
+Serial.print(counter);
+Serial.print(" - x: ");
+Serial.println(simpleMotor.xPos);
 } //loop
 
 ISR(TIMER3_COMPA_vect){ // This is the timer for motor movement
   
   counter++;
- // simpleMotor.stepMotor();
+  simpleMotor.motorControl();
+  //simpleMotor.stepMotor();
 } //ISR TIMER3

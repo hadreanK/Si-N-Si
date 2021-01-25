@@ -9,7 +9,7 @@
 // FUNCTIONS
 MotionData::MotionData(int pinDir,int pinStep, int pinMS1, int pinMS2){
 	m_currentStep = 53;
-	currentStep = 57;
+	xPos = 0;
 	m_pinDir = pinDir;
 	m_pinStep = pinStep;
 	m_pinMS1 = pinMS1;
@@ -74,10 +74,17 @@ void MotionData::stepMotor(){
 	//delayMicroseconds(MICROSECOND_DELAY_STEP);
 	digitalWrite(m_pinStep,LOW);
 	//delayMicroseconds(MICROSECOND_DELAY_STEP);
+	xPos++;
 } // stepMotor
 
 void MotionData::motorControl(){
 	// Get the x and t buffers
 	// interpolate between each one 
+	long int t = millis() - m_startTime;// Current time along motion program in ms
+	
 }//motorControl
+
+void MotionData::startMotion(){
+	m_startTime = millis();
+} // startMotion
 #endif

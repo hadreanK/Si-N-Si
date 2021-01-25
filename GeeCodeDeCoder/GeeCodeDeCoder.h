@@ -3,6 +3,7 @@
 
 #include "Definitions.h"
 
+
 // Class DEFINITIONS //
 class MotionData {
 	private:
@@ -12,12 +13,14 @@ class MotionData {
 		int m_pinMS1;
 		int m_pinMS2;
 		int m_stepSize;
+		long int m_startTime;
 		
 	public:
 		// Public Variables
 		long int currentStep;
-		int tBuffer1[BUFFER_SIZE]; // the time buffer in ms
-		int tBuffer2[BUFFER_SIZE]; // the second time buffer in ms
+		long int xPos; // This is the current x position of the motor in steps
+		int tBuffer1[BUFFER_SIZE]; // the time buffer in 1/10s
+		int tBuffer2[BUFFER_SIZE]; // the second time buffer in 1/10s
 		int xBuffer1[BUFFER_SIZE]; // the position buffer in steps
 		int xBuffer2[BUFFER_SIZE]; // the alternate position buffer in steps
 		
@@ -39,8 +42,17 @@ class MotionData {
 			// Negative steps are in the negative direciton
 		void stepMotor();
 			// This will move the motor one step in its current direction
-
+		void motorControl();
+			// This will control 1 motor along the 
+		void makeTestProgram();
+			// This will make a test program
+			// RN it's set up to make a 1D sine wave for a single motor to follow
+		void startMotion();
+			// This will start the current loaded motion program
 }; // MotionData Class definition
+
+// Other stuff
+
 
 #endif
 

@@ -6,6 +6,6 @@
 #define BUFFER_SIZE 100
 #define MOTOR_FREQ 250 // This is the frequency of the motor update in Hz (+/- rounding)
 				// ^^ 250Hz seems to be working ok for the 5V ones I got from Maxi
- 
+#define T_BUFFER_FREQ // This is the frequency of the tBuffer, i.e. what fraction of a second 
 #endif
 
